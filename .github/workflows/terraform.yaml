@@ -3,7 +3,8 @@ name: Terraform Workflow
 on:
   push:
     branches:
-      - main
+      - main 
+      - feature
   workflow_dispatch:
     inputs:
       destroy:
@@ -33,22 +34,23 @@ jobs:
       - name: Terraform Init
         run: terraform init
         
+        
 
       - name: Terraform Validate
         run: terraform validate
         
+        
 
       - name: Terraform Plan
-        run: terraform plan -out=tfplan
+        run: terraform plan 
         continue-on-error: true
 
       - name: Apply Terraform Changes
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve tfplan
-       
+        
 
       - name: Destroy Infrastructure
         if: github.event.inputs.destroy == 'true'
         run: terraform destroy -auto-approve
-        
-        
+      
