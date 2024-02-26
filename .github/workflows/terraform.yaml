@@ -47,7 +47,7 @@ jobs:
 
       - name: Apply Terraform Changes
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve tfplan
+        run: terraform apply -auto-approve 
         
 
       - name: Destroy Infrastructure
