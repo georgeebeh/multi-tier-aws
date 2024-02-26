@@ -1,0 +1,49 @@
+name: Terraform Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      destroy:
+        description: 'Destroy infrastructure'
+        default: 'true'
+
+jobs:
+  terraform:
+    name: Terraform Actions
+    runs-on: ubuntu-latest
+
+    env:
+      #TF_VAR_region: ${{ secrets.TF_VAR_REGION }}
+      AWS_DEFAULT_REGION: ${{ secrets.TF_VAR_REGION }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.1.7
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+        continue-on-error: true
+
+      - name: Apply Terraform Changes
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve tfplan
+
+      - name: Destroy Infrastructure
+        if: github.event.inputs.destroy == 'true'
+        run: terraform destroy -auto-approve
