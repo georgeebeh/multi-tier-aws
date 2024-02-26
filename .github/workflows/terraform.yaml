@@ -3,7 +3,8 @@ name: Terraform Workflow
 on:
   push:
     branches:
-      - main
+      - main 
+      - feature
   workflow_dispatch:
     inputs:
       destroy:
