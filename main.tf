@@ -102,10 +102,18 @@ resource "aws_subnet" "db_subnet_1" {
   vpc_id            = aws_vpc.dev-vpc.id
   cidr_block        = "10.0.5.0/24"
   availability_zone = "eu-west-2a"
+
+  tags = {
+    Name = "db-subnet-1"
+  }
 }
 
 resource "aws_subnet" "db_subnet_2" {
   vpc_id            = aws_vpc.dev-vpc.id
   cidr_block        = "10.0.6.0/24"
   availability_zone = "eu-west-2a"
+
+  tags = {
+    Name = "db-subnet-2"
+  }
 }
