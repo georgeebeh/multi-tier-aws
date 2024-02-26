@@ -8,7 +8,7 @@ on:
     inputs:
       destroy:
         description: 'Destroy infrastructure'
-        default: 'false'
+        default: 'true'
 
 jobs:
   terraform:
