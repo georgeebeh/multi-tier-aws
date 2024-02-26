@@ -6,6 +6,10 @@ variable "region" {
 
 variable "bucketname" {
   description = "The name of the S3 bucket to store Terraform state"
-  
+    
+}
+
+variable "dynamo-db-table" {
+  description = "The name of the DynamoDB table to store Terraform state lock"
   
 }

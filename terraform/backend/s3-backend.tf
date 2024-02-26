@@ -23,7 +23,7 @@ resource "aws_s3_bucket_versioning" "s3-backend-versioning" {
 
 # Create a DynamoDB table for state locking
 resource "aws_dynamodb_table" "terraform_state_lock" {
-  name           = "terraform-state-lock"
+  name           = var.dynamo-db-table
   billing_mode   = "PAY_PER_REQUEST"
   hash_key       = "LockID"
 
