@@ -8,3 +8,9 @@ output "public_subnet_ids" {
   description = "The IDs of the public subnets"
   value       = [aws_subnet.pub-subnet-1.id, aws_subnet.pub-subnet-2.id]  # Replace with your actual resources
 }
+
+output "private_subnet_ids" {
+  description = "The IDs of the private subnets"
+  value       = [aws_subnet.priv-subnet-1.id, aws_subnet.priv-subnet-2.id]  # Replace with your actual resources
+  
+}
