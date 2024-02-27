@@ -21,3 +21,7 @@ variable "az2" {
   type        = string
   default     = "eu-west-2b"
 }
+variable "asg_name" {
+  description = "Name for the Auto Scaling Group"
+  type        = string
+}
