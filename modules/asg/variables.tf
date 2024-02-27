@@ -23,9 +23,10 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "subnet_ids" {
+variable "private_subnet_ids" {
   description = "A list of subnet IDs to launch resources in"
   type        = list(string)
+  default = [ "value" ]
 }
 
 variable "min_size" {
