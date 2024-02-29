@@ -23,7 +23,24 @@ resource "aws_lb_listener" "web" {
 
   default_action {
     type             = "forward"
+    target_group_arn = var.alb_target_group_arn
+  }
+}
+
+# Create an ALB Listener Rule
+resource "aws_lb_listener_rule" "static" {
+  listener_arn = aws_lb_listener.web.arn
+  priority     = 100
+
+  action {
+    type             = "forward"
     target_group_arn = aws_lb_target_group.application.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["*"]
+    }
   }
 }
 
@@ -33,10 +50,10 @@ resource "aws_lb_target_group" "application" {
   port     = var.alb_target_group_port
   protocol = var.alb_target_group_protocol
   vpc_id   = var.vpc_id
+  
 
   health_check {
     path                = var.alb_health_check_path
-    port                = var.alb_target_group_port
     protocol            = var.alb_target_group_protocol
     timeout             = var.alb_health_check_timeout
     interval            = var.alb_health_check_interval
