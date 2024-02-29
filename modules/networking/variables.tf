@@ -1,7 +1,7 @@
 variable "region" {
   description = "The AWS region to deploy resources"
   type        = string
-  default    = "eu-west-2"
+  default    = "us-east-1"
 }
 
 variable "vpc_cidr" {
@@ -13,13 +13,13 @@ variable "vpc_cidr" {
 variable "az1" {
   description = "The availability zone for the first availability zone"
   type        = string
-  default     = "eu-west-2a"
+  default     = "us-east-1a"
 }
 
 variable "az2" {
   description = "The availability zone for the second availability zone"
   type        = string
-  default     = "eu-west-2b"
+  default     = "us-east-1b"
 }
 
 variable "public_subnet_cidr_blocks" {
@@ -38,7 +38,7 @@ variable "private_subnet_cidr_blocks" {
 variable "availability_zones" {
   description = "The availability zones for the VPC"
   type        = list(string)
-  default     = ["eu-west-2a", "eu-west-2b"]
+  default     = ["us-east-1a", "us-east-1b"]
   
 }
 

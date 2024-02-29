@@ -6,11 +6,16 @@ output "alb_subnet_ids" {
 }
 output "public_subnet_ids" {
   description = "The IDs of the public subnets"
-  value       = [aws_subnet.pub-subnet-1.id, aws_subnet.pub-subnet-2.id]  # Replace with your actual resources
+  value       = [aws_subnet.pub-subnet-1.id, aws_subnet.pub-subnet-2.id] 
 }
 
-output "private_subnet_ids" {
+output "priv-subnet-1-id" {
   description = "The IDs of the private subnets"
-  value       = [aws_subnet.priv-subnet-1.id, aws_subnet.priv-subnet-2.id]  # Replace with your actual resources
-  
+  value       = aws_subnet.priv-subnet-1.id 
 }
+
+output "priv-subnet-2-id" {
+  description = "The IDs of the private subnets"
+  value       = aws_subnet.priv-subnet-2.id   
+} 
+ 
