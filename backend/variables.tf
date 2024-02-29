@@ -13,3 +13,4 @@ variable "dynamo-db-table" {
   description = "The name of the DynamoDB table to store Terraform state lock"
   
 }
+
