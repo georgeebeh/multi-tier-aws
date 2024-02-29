@@ -42,7 +42,9 @@ jobs:
         
 
       - name: Terraform Plan
-        run: terraform plan 
+        run: |
+          export TF_LOG=DEBUG
+          terraform plan 
         continue-on-error: true
 
       - name: Apply Terraform Changes
