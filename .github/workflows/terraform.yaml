@@ -42,8 +42,9 @@ jobs:
         
 
       - name: Terraform Plan
-        run: terraform plan -lock=false
-        continue-on-error: true
+        run: |
+          export TF_LOG=DEBUG
+          terraform plan 
 
       - name: Apply Terraform Changes
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
