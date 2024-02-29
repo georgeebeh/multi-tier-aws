@@ -31,3 +31,11 @@ variable "key_name" {
   type        = string
   
 }
+variable "instance_type" {
+  description = "Type of instance to launch"
+  type        = string
+}
+variable "image_id" {
+  description = "AMI ID for the instances"
+  type        = string
+}
