@@ -42,7 +42,7 @@ jobs:
         
 
       - name: Terraform Plan
-        run: terraform plan 
+        run: terraform plan -lock=false
         continue-on-error: true
 
       - name: Apply Terraform Changes
