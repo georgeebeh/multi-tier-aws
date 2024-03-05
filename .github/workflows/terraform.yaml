@@ -31,8 +31,6 @@ jobs:
         with:
           terraform_version: 1.1.7
 
-      - name: Print Terraform file
-        run: cat main.tf
 
       - name: Terraform Init
         run: terraform init
