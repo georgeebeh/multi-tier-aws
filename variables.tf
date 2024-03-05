@@ -24,6 +24,7 @@ variable "az2" {
 variable "asg_name" {
   description = "Name for the Auto Scaling Group"
   type        = string
+  default     = "my-asg"
 }
 
 variable "key_name" {
