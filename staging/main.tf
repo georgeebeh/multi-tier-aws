@@ -25,9 +25,9 @@ module "networking" {
   source = "../modules/networking"
 
   # Include any necessary input variables for the networking module
-  vpc_cidr             = "10.0.0.0/16"
-  public_subnet_cidr_blocks    = ["10.0.1.0/24", "10.0.2.0/24"]
-  private_subnet_cidr_blocks   = ["10.0.10.0/24", "10.0.11.0/24"]
+  vpc_cidr             = var.vpc_cidr
+  public_subnet_cidr_blocks    = var.public_subnet_cidr_blocks
+  private_subnet_cidr_blocks   = var.private_subnet_cidr_blocks
   availability_zones           = ["us-east-1a", "us-east-1b"]
   vpc_name                     = "my-vpc"
 }
@@ -44,29 +44,23 @@ module "alb" {
   alb_target_group_arn = module.alb.alb_target_group_arn
   
 }
-output "alb_target_group_arn" {
-  value = module.alb.alb_target_group_arn
-}
+
 
 # ASG module
 module "asg" {
-  source = "../modules/asg"
+  source = "../modules/compute"
   # Include any necessary input variables for the ASG module
-  asg_name                     = "my-asg"
+  asg_name                     = var.asg_name
   vpc_id                       = module.networking.vpc_id
   alb_target_group_arn = module.alb.alb_target_group_arn
   alb_sg_id  = module.alb.alb_sg_id
   min_size = 1
   max_size = 3
   desired_capacity = 2
-  image_id = "ami-0c55b159cbfafe1f0"
-  instance_type = "t2.micro"
-  key_name = "my-key"
+  image_id = var.image_id
+  instance_type = var.instance_type
+  key_name = var.key_name
   priv-subnet-1-id = module.networking.priv-subnet-1-id
   priv-subnet-2-id = module.networking.priv-subnet-2-id
 }
 
-# Output
-output "alb_dns_name" {
-  value = module.alb.alb_dns_name
-}

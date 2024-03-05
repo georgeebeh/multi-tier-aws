@@ -39,3 +39,14 @@ variable "image_id" {
   description = "AMI ID for the instances"
   type        = string
 }
+
+variable "public_subnet_cidr_blocks" {
+  description = "The CIDR blocks for the public subnets"
+  type        = list(string)
+}
+
+variable "private_subnet_cidr_blocks" {
+  description = "The CIDR blocks for the private subnets"
+  type        = list(string)
+  
+}
