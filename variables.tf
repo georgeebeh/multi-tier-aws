@@ -29,13 +29,17 @@ variable "asg_name" {
 variable "key_name" {
   description = "The key name to use for the instance"
   type        = string
+  default = "my-key"
   
 }
 variable "instance_type" {
   description = "Type of instance to launch"
   type        = string
+  default     = "t2.micro"
 }
 variable "image_id" {
   description = "AMI ID for the instances"
   type        = string
+  default     = "ami-0c55b159cbfafe1f0"
+
 }
