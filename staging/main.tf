@@ -47,7 +47,7 @@ module "alb" {
 
 
 # ASG module
-module "asg" {
+module "compute" {
   source = "../modules/compute"
   # Include any necessary input variables for the ASG module
   asg_name                     = var.asg_name
