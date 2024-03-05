@@ -44,7 +44,7 @@ jobs:
       - name: Terraform Plan
         run: |
           export TF_LOG=DEBUG
-          terraform plan 
+          terraform plan --input=false --out=tfplan
         continue-on-error: true
 
       - name: Apply Terraform Changes
