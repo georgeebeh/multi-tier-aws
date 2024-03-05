@@ -41,6 +41,6 @@ variable "instance_type" {
 variable "image_id" {
   description = "AMI ID for the instances"
   type        = string
-  default     = "ami-052e353fdc3135488"
+  default     = "ami-0c55b159cbfafe1f0"
 
 }
