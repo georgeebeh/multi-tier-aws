@@ -19,3 +19,7 @@ output "priv-subnet-2-id" {
   value       = aws_subnet.priv-subnet-2.id   
 } 
  
+output "public_subnet_cidr_blocks" {
+  description = "The CIDR blocks of the public subnets"
+  value       = [aws_subnet.pub-subnet-1.cidr_block, aws_subnet.pub-subnet-2.cidr_block]
+}
