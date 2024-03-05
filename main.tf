@@ -48,9 +48,9 @@ output "alb_target_group_arn" {
   value = module.alb.alb_target_group_arn
 }
 
-# ASG module
-module "asg" {
-  source = "./modules/asg"
+# Compute module
+module "compute" {
+  source = "./modules/compute"
   # Include any necessary input variables for the ASG module
   asg_name                     = "my-asg"
   vpc_id                       = module.networking.vpc_id
