@@ -8,6 +8,6 @@ output "asg_sg_id" {
 }
 
 output "image_id" {
-  value = data.aws_ami.ami.id
+  value = data.aws_ami.ubuntu.id
   
 }
