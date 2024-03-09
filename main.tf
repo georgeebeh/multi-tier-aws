@@ -75,9 +75,9 @@ output "alb_dns_name" {
 module "database" {
   source = "./modules/database"
   vpc_id = module.networking.vpc_id
-  private_subnet_ids = module.networking.private_subnet_ids
-  db_name = "mydb"
-  db_username = "myuser"
-  db_password = "mypassword"
+  database_subnet_ids = module.networking.database_subnet_ids
+  db_name = var.db_name
+  db_username = var.db_username
+  db_password = var.db_password
   db_port = 3306
 }*/
