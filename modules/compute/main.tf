@@ -52,7 +52,7 @@ data "template_file" "user_data" {
               systemctl start apache2
               systemctl enable apache2
               echo "<h1>Welcome! This server is running in $(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone)</h1>" > /var/www/html/index.html
-            EOF
+             EOF
 }
 
 
@@ -83,7 +83,7 @@ resource "aws_autoscaling_group" "asg" {
   desired_capacity     = var.desired_capacity
   health_check_type    = "EC2"
 
-  tag {
+   tag {
     key                 = "Key"
     value               = "Value"
     propagate_at_launch = true
