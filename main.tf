@@ -37,7 +37,7 @@ module "alb" {
   source = "./modules/alb"
 
   # Include any necessary input variables for the ALB module
-  alb_name                     = "my-alb"
+  alb_name                     = var.alb_name
   alb_subnet_ids               = module.networking.public_subnet_ids
   alb_security_group_id        = module.alb.alb_sg_id
   vpc_id                       = module.networking.vpc_id
@@ -52,16 +52,16 @@ output "alb_target_group_arn" {
 module "compute" {
   source = "./modules/compute"
   # Include any necessary input variables for the ASG module
-  asg_name                     = "my-asg"
+  asg_name                     = var.asg_name
   vpc_id                       = module.networking.vpc_id
   alb_target_group_arn = module.alb.alb_target_group_arn
   alb_sg_id  = module.alb.alb_sg_id
   min_size = 1
   max_size = 3
   desired_capacity = 2
-  image_id = "ami-0c55b159cbfafe1f0"
-  instance_type = "t2.micro"
-  key_name = "my-key"
+  image_id = var.image_id
+  instance_type = var.instance_type
+  key_name = var.key_name
   priv-subnet-1-id = module.networking.priv-subnet-1-id
   priv-subnet-2-id = module.networking.priv-subnet-2-id
 }
@@ -70,3 +70,14 @@ module "compute" {
 output "alb_dns_name" {
   value = module.alb.alb_dns_name
 }
+
+/*# Database
+module "database" {
+  source = "./modules/database"
+  vpc_id = module.networking.vpc_id
+  private_subnet_ids = module.networking.private_subnet_ids
+  db_name = "mydb"
+  db_username = "myuser"
+  db_password = "mypassword"
+  db_port = 3306
+}*/

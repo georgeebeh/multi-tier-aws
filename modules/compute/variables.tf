@@ -7,6 +7,7 @@ variable "asg_name" {
 variable "image_id" {
   description = "AMI ID for the instances"
   type        = string
+  default = "ami-06b52a67c6abeda89"
 }
 
 variable "instance_type" {
