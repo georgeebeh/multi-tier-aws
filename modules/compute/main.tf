@@ -64,7 +64,7 @@ resource "aws_launch_template" "lt" {
   user_data = base64encode(data.template_file.user_data.rendered)
 
   network_interfaces {
-    associate_public_ip_address = true
+    associate_public_ip_address = false
     security_groups             = [aws_security_group.sg.id]
   }
 }
@@ -82,6 +82,8 @@ resource "aws_autoscaling_group" "asg" {
   max_size             = var.max_size
   desired_capacity     = var.desired_capacity
   health_check_type    = "EC2"
+
+
 
    tag {
     key                 = "Key"
